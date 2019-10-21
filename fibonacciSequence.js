@@ -6,31 +6,22 @@
 * Input number of terms for the Series (< 20) : 10
 * Expected Output :
 *                                                        
-* 1  1  2  3  5  8  13  21  34  55  
+* 0  1  1  2  3  5  8  13  21  34  55  
 */
-
-function fibonacciSequence(times, num = 0, res = []) {
-    if (res === undefined || res === null || typeof res === "string") {
-        return res = [];
-    }
-    else {
-        if (times < 1) {
+function fibonacci_series(times, res = []) {
+    if (times === 1) {
+        if (res.length > 1)
             return res;
-        }
-        else {
-            if (res.length > 1) {
-                res = [...res, res[res.length - 2] + res[res.length - 1]]
-                fibonacciSequence(times - 1, num + res[res.length - 1], res);
-            }
-            else {
-                res = [num, num + 1]
-                fibonacciSequence(times - 1, num + 1, res);
-            }
-        }
-        return res;
     }
+    else
+        if (res.length === 0 && times === 10) {
+            res = [0, +res + 1]
+        }
+    res = [...res, res[res.length - 2] + res[res.length - 1]];
+    return fibonacci_series(times - 1, res);
+
+
 }
 
-fibonacciSequence(10)
-
+console.log(fibonacci_series(10));
 
